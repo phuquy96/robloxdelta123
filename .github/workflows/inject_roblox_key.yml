@@ -1,0 +1,78 @@
+name: Tao File IPA Roblox PhuQuy VIP Co Bang Nhap Key
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build_ipa:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: 1. Bien dich phuquy.dylib
+        run: |
+          if [ -f "src/PhuQuyGate.mm" ]; then
+            SRC_GATE="src/PhuQuyGate.mm"
+          elif [ -f ".github/workflows/src/PhuQuyGate.mm" ]; then
+            SRC_GATE=".github/workflows/src/PhuQuyGate.mm"
+          else
+            echo "Khong tim thay PhuQuyGate.mm, dang tai file goc..."
+            curl -L -o PhuQuyGate.mm "https://raw.githubusercontent.com/lngphuquy-coder/deltaroblox/main/src/PhuQuyGate.mm" || true
+            SRC_GATE="PhuQuyGate.mm"
+          fi
+
+          xcrun -sdk iphoneos clang++ -arch arm64 -miphoneos-version-min=14.0 \
+            -std=c++17 -dynamiclib \
+            -framework UIKit -framework Foundation -framework WebKit \
+            "$SRC_GATE" -o phuquy.dylib
+          ls -lh phuquy.dylib
+
+      - name: 2. Cai insert_dylib
+        run: |
+          git clone --depth=1 https://github.com/Tyilo/insert_dylib.git
+          cd insert_dylib
+          xcodebuild -configuration Release -quiet
+          sudo cp build/Release/insert_dylib /usr/local/bin/
+          cd ..
+
+      - name: 3. Tai file zip Roblox tu Releases
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p work
+          cd work
+          gh release download --repo "${{ github.repository }}" --pattern "*.zip" --clobber
+          ZIP_FILE=$(find . -name "*.zip" | head -n 1)
+          unzip -q "$ZIP_FILE"
+          mkdir -p ../Payload
+          if [ -d "Payload/Roblox.app" ]; then
+            mv Payload/Roblox.app ../Payload/
+          elif [ -d "Roblox.app" ]; then
+            mv Roblox.app ../Payload/
+          else
+            mv $(find . -maxdepth 3 -type d -name "Roblox.app" | head -n 1) ../Payload/
+          fi
+          cd ..
+
+      - name: 4. Tiem phuquy.dylib va nhapkey.html
+        run: |
+          cp phuquy.dylib Payload/Roblox.app/
+          insert_dylib --inplace --all-yes "@executable_path/phuquy.dylib" Payload/Roblox.app/Roblox
+          curl -L -o Payload/Roblox.app/nhapkey.html "https://phuquystore.site/nhapkey.html"
+          cp Payload/Roblox.app/nhapkey.html Payload/Roblox.app/onyxz_gate.html
+
+      - name: 5. Dong goi file IPA
+        run: |
+          zip -r -q Roblox-PhuQuy-VIP.ipa Payload/
+          ls -lh Roblox-PhuQuy-VIP.ipa
+
+      - name: 6. Xuat file IPA len Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Roblox-PhuQuy-VIP-IPA
+          path: Roblox-PhuQuy-VIP.ipa
