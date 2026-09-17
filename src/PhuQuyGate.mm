@@ -11,6 +11,7 @@
 + (void)dismissOverlay;
 - (void)startHeartbeat;
 - (void)stopHeartbeat;
+- (void)performServerVerification;
 @end
 
 @implementation PhuQuyGateOverlay
@@ -121,9 +122,8 @@
     if (!savedKey) return;
     self.activeKey = savedKey;
 
-    __weak typeof(self) weakSelf = self;
-    self.heartbeatTimer = [NSTimer scheduledTimerWithTimeInterval:3.5 repeats:YES block:^(NSTimer *t) {
-        [weakSelf performServerVerification];
+    self.heartbeatTimer = [NSTimer scheduledTimerWithTimeInterval:3.5 repeats:YES block:^(NSTimer * _Nonnull t) {
+        [[PhuQuyGateOverlay sharedInstance] performServerVerification];
     }];
 }
 
