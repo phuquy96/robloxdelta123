@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="PHUQUY KEY">
+    <meta name="theme-color" content="#030712">
+    <title>PHUQUY VIP - Cổng Kích Hoạt & Nhập Key Bản Quyền</title>
+
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-deep: #030712;
+            --card-bg: rgba(15, 23, 42, 0.75);
+            --card-border: rgba(99, 102, 241, 0.25);
+            --accent-glow: #6366f1;
+            --cyan-glow: #06b6d4;
+            --emerald-glow: #10b981;
+            --rose-glow: #f43f5e;
+            --amber-glow: #f59e0b;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg-deep);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Dynamic Cyber Background Lights */
+        .ambient-glow {
+            position: fixed;
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            filter: blur(140px);
+            opacity: 0.28;
+            pointer-events: none;
+            z-index: 0;
+            animation: pulseGlow 8s ease-in-out infinite alternate;
+        }
+        .glow-1 { top: -100px; left: -100px; background: #4f46e5; }
+        .glow-2 { bottom: -120px; right: -120px; background: #06b6d4; animation-delay: -4s; }
+        .glow-3 { top: 50%; left: 50%; transform: translate(-50%, -50%); width: 320px; height: 320px; background: #8b5cf6; opacity: 0.15; }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(0.95); opacity: 0.2; }
+            100% { transform: scale(1.15); opacity: 0.35; }
+        }
+
+        /* Cyber Grid Lines */
+        .cyber-grid {
+            position: fixed;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Main Container */
+        .key-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 520px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            padding: 34px 28px;
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            box-shadow: 
+                0 25px 60px -15px rgba(0, 0, 0, 0.85),
+                0 0 45px -10px rgba(99, 102, 241, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Brand Header */
+        .brand-header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .brand-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: rgba(99, 102, 241, 0.12);
+            border: 1px solid rgba(99, 102, 241, 0.35);
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #818cf8;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+        }
+        .brand-badge i { font-size: 0.7rem; color: #a5b4fc; }
+
+        .brand-title {
+            font-size: 1.85rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #ffffff 30%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 6px;
+        }
+
+        .brand-subtitle {
+            font-size: 0.88rem;
+            color: var(--text-sub);
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        /* HWID Tag Box */
+        .hwid-pill-box {
+            background: rgba(2, 6, 23, 0.7);
+            border: 1px dashed rgba(148, 163, 184, 0.25);
+            border-radius: 14px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 22px;
+            transition: border-color 0.2s;
+        }
+        .hwid-pill-box:hover {
+            border-color: rgba(99, 102, 241, 0.5);
+        }
+
+        .hwid-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            overflow: hidden;
+        }
+        .hwid-info i {
+            color: var(--cyan-glow);
+            font-size: 1rem;
+        }
+        .hwid-label {
+            font-size: 0.72rem;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            display: block;
+        }
+        .hwid-value {
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            color: #38bdf8;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 250px;
+        }
+
+        .btn-copy-hwid {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #cbd5e1;
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .btn-copy-hwid:hover {
+            background: rgba(99, 102, 241, 0.25);
+            color: #fff;
+            border-color: rgba(99, 102, 241, 0.5);
+        }
+
+        /* Key Input Form */
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .input-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #cbd5e1;
+            margin-bottom: 8px;
+        }
+        .input-label span {
+            color: var(--text-sub);
+            font-size: 0.75rem;
+            font-weight: 400;
+        }
+
+        .key-input-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .key-input {
+            width: 100%;
+            background: rgba(2, 6, 23, 0.85);
+            border: 2px solid rgba(99, 102, 241, 0.28);
+            border-radius: 16px;
+            padding: 16px 50px 16px 18px;
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+            outline: none;
+            text-transform: uppercase;
+            transition: all 0.25s ease;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
+        }
+        .key-input::placeholder {
+            color: #475569;
+            text-transform: none;
+            font-weight: 400;
+            letter-spacing: normal;
+        }
+        .key-input:focus {
+            border-color: #818cf8;
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.35), inset 0 2px 4px rgba(0,0,0,0.5);
+            background: rgba(2, 6, 23, 0.95);
+        }
+
+        .btn-paste {
+            position: absolute;
+            right: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            color: #94a3b8;
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-paste:hover {
+            background: rgba(99, 102, 241, 0.3);
+            color: #fff;
+        }
+
+        /* Action Buttons */
+        .btn-verify {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #06b6d4 100%);
+            background-size: 200% auto;
+            border: none;
+            border-radius: 16px;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            font-weight: 800;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.35s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            box-shadow: 0 10px 30px -8px rgba(79, 70, 229, 0.6);
+            margin-bottom: 12px;
+        }
+        .btn-verify:hover {
+            background-position: right center;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px -8px rgba(79, 70, 229, 0.8), 0 0 20px rgba(6, 182, 212, 0.4);
+        }
+        .btn-verify:active {
+            transform: translateY(0);
+        }
+        .btn-verify:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Server Endpoint Selector (Accordion toggle) */
+        .server-endpoint-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.72rem;
+            color: var(--text-sub);
+            padding: 8px 12px;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+            margin-top: 14px;
+        }
+        .server-status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 10px #10b981;
+            display: inline-block;
+            margin-right: 6px;
+        }
+
+        /* Result Cards (Dynamic After Verification) */
+        .result-panel {
+            display: none;
+            margin-top: 24px;
+            border-radius: 20px;
+            padding: 22px;
+            animation: slideUpFade 0.4s ease forwards;
+        }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Success Card */
+        .result-panel.success {
+            display: block;
+            background: linear-gradient(180deg, rgba(16, 185, 129, 0.12) 0%, rgba(6, 78, 59, 0.15) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            box-shadow: 0 12px 35px -10px rgba(16, 185, 129, 0.25);
+        }
+
+        /* Error Card */
+        .result-panel.error {
+            display: block;
+            background: linear-gradient(180deg, rgba(244, 63, 94, 0.14) 0%, rgba(136, 19, 55, 0.18) 100%);
+            border: 1px solid rgba(244, 63, 94, 0.45);
+            box-shadow: 0 12px 35px -10px rgba(244, 63, 94, 0.3);
+            animation: shake 0.4s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+
+        .result-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .result-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+        .success .result-icon {
+            background: rgba(16, 185, 129, 0.2);
+            color: #34d399;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.35);
+        }
+        .error .result-icon {
+            background: rgba(244, 63, 94, 0.2);
+            color: #fb7185;
+            box-shadow: 0 0 15px rgba(244, 63, 94, 0.35);
+        }
+
+        .result-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+        }
+        .success .result-title { color: #34d399; }
+        .error .result-title { color: #fb7185; }
+        .result-desc {
+            font-size: 0.8rem;
+            color: #cbd5e1;
+            margin-top: 2px;
+            line-height: 1.4;
+        }
+
+        /* Countdown Live Timer Grid */
+        .timer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin: 18px 0;
+        }
+        .timer-box {
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 10px 4px;
+            text-align: center;
+        }
+        .timer-num {
+            font-family: var(--font-mono);
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #38bdf8;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .timer-unit {
+            font-size: 0.65rem;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        /* Meta Details List */
+        .meta-list {
+            background: rgba(0, 0, 0, 0.35);
+            border-radius: 12px;
+            padding: 12px 14px;
+            margin-bottom: 16px;
+        }
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            font-size: 0.8rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .meta-row:last-child { border-bottom: none; }
+        .meta-k { color: var(--text-sub); font-weight: 500; }
+        .meta-v { font-weight: 700; color: #fff; font-family: var(--font-mono); }
+
+        .btn-launch-menu {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border: none;
+            border-radius: 14px;
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 8px 25px -6px rgba(16, 185, 129, 0.5);
+            transition: all 0.25s;
+        }
+        .btn-launch-menu:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px -6px rgba(16, 185, 129, 0.7);
+        }
+
+        /* Footer Links iOS 26 Liquid Glass */
+        .footer-links {
+            margin-top: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .contact-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 18px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-decoration: none;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .zalo-pill {
+            background: rgba(0, 104, 255, 0.12);
+            border: 1px solid rgba(0, 136, 255, 0.38);
+            color: #38bdf8;
+            box-shadow: 0 4px 16px rgba(0, 104, 255, 0.15);
+        }
+        .zalo-pill:hover, .zalo-pill:active {
+            background: rgba(0, 104, 255, 0.26);
+            border-color: #38bdf8;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 104, 255, 0.35);
+        }
+        .tele-pill {
+            background: rgba(36, 161, 222, 0.12);
+            border: 1px solid rgba(42, 171, 238, 0.38);
+            color: #22d3ee;
+            box-shadow: 0 4px 16px rgba(0, 229, 255, 0.15);
+        }
+        .tele-pill:hover, .tele-pill:active {
+            background: rgba(36, 161, 222, 0.26);
+            border-color: #22d3ee;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 229, 255, 0.35);
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 0.7s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* MODAL POPUP HÌNH VUÔNG BO TRÒN GÓC */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.78);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.25s ease-out;
+        }
+
+        .square-popup-card {
+            position: relative;
+            width: 100%;
+            max-width: 360px;
+            aspect-ratio: 1 / 1;
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.96) 0%, rgba(3, 7, 18, 0.98) 100%);
+            border: 2px solid rgba(16, 185, 129, 0.55);
+            border-radius: 36px;
+            padding: 24px 22px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            text-align: center;
+            box-shadow: 
+                0 25px 60px -10px rgba(0, 0, 0, 0.9),
+                0 0 45px rgba(16, 185, 129, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            animation: zoomBounce 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .square-popup-card.state-error {
+            border-color: rgba(244, 63, 94, 0.65) !important;
+            box-shadow: 
+                0 25px 60px -10px rgba(0, 0, 0, 0.9),
+                0 0 45px rgba(244, 63, 94, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+        }
+        .state-error .popup-icon-box {
+            background: linear-gradient(135deg, #f43f5e 0%, #be123c 100%) !important;
+            box-shadow: 0 10px 25px rgba(244, 63, 94, 0.55) !important;
+        }
+        .state-error .popup-title {
+            color: #fb7185 !important;
+        }
+        .state-error .popup-divider {
+            background: linear-gradient(90deg, transparent, #f43f5e, transparent) !important;
+        }
+        .state-error .btn-popup-action {
+            background: linear-gradient(135deg, #f43f5e 0%, #be123c 100%) !important;
+            box-shadow: 0 8px 20px rgba(244, 63, 94, 0.4) !important;
+        }
+
+        @keyframes zoomBounce {
+            0% { transform: scale(0.65); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .popup-icon-box {
+            width: 58px;
+            height: 58px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #fff;
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.55);
+            margin-top: 4px;
+        }
+
+        .popup-title {
+            font-size: 1.18rem;
+            font-weight: 800;
+            color: #34d399;
+            letter-spacing: -0.3px;
+            margin: 6px 0 2px;
+            text-transform: uppercase;
+        }
+
+        .popup-divider {
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #10b981, transparent);
+            margin-bottom: 6px;
+        }
+
+        .popup-info-grid {
+            width: 100%;
+            background: rgba(2, 6, 23, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .popup-info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.84rem;
+        }
+
+        .popup-label {
+            color: #94a3b8;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .popup-label i { font-size: 0.75rem; color: #38bdf8; }
+
+        .popup-val {
+            font-weight: 800;
+            font-family: var(--font-mono);
+        }
+        .popup-val.key-val {
+            color: #a5b4fc;
+            max-width: 170px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .popup-val.time-val {
+            color: #38bdf8;
+        }
+        .popup-val.expire-val {
+            color: #facc15;
+            font-size: 0.8rem;
+        }
+
+        .btn-popup-action {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border: none;
+            border-radius: 14px;
+            color: #fff;
+            font-weight: 800;
+            font-size: 0.9rem;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+            transition: all 0.2s;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-popup-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(16, 185, 129, 0.6);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Glow FX -->
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+    <div class="ambient-glow glow-3"></div>
+    <div class="cyber-grid"></div>
+
+    <!-- Main Card -->
+    <div class="key-wrapper">
+        
+        <!-- Header -->
+        <div class="brand-header">
+            <div class="brand-badge">
+                <i class="fa-solid fa-shield-halved"></i> PHUQUY SECURITY ENGINE 2026
+            </div>
+            <h1 class="brand-title">CỔNG NHẬP KEY VIP</h1>
+            <p class="brand-subtitle">Xác thực bản quyền & Mở khóa menu game trực tiếp từ Server</p>
+        </div>
+
+        <!-- HWID Box -->
+        <div class="hwid-pill-box">
+            <div class="hwid-info">
+                <i class="fa-solid fa-microchip"></i>
+                <div style="overflow:hidden;">
+                    <span class="hwid-label">Mã Máy / HWID Thiết Bị:</span>
+                    <span class="hwid-value" id="disp-hwid">Đang khởi tạo...</span>
+                </div>
+            </div>
+            <button type="button" class="btn-copy-hwid" id="btn-copy-hwid" title="Sao chép HWID">
+                <i class="fa-regular fa-copy"></i> Copy
+            </button>
+        </div>
+
+        <!-- Form Nhập Key -->
+        <form id="key-verify-form">
+            <div class="form-group">
+                <div class="input-label">
+                    <label for="input-key">MÃ KEY BẢN QUYỀN:</label>
+                    <span id="key-state-hint">Định dạng: PHUQUY-XXXX-XXXX</span>
+                </div>
+                <div class="key-input-container">
+                    <input 
+                        type="text" 
+                        id="input-key" 
+                        class="key-input" 
+                        placeholder="DÁN HOẶC NHẬP KEY TẠI ĐÂY..." 
+                        autocomplete="off" 
+                        spellcheck="false" 
+                        required
+                    >
+                    <button type="button" class="btn-paste" id="btn-paste-key" title="Dán nhanh từ Clipboard">
+                        <i class="fa-solid fa-paste"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Nút Kích Hoạt -->
+            <button type="submit" class="btn-verify" id="btn-submit">
+                <i class="fa-solid fa-bolt"></i>
+                <span id="btn-submit-text">KÍCH HOẠT & MỞ KHÓA MENU</span>
+            </button>
+        </form>
+
+        <!-- Server Endpoint Bar -->
+        <div class="server-endpoint-bar">
+            <div style="display:flex; align-items:center; gap:6px;">
+                <span class="server-status-dot"></span>
+                <span style="font-weight:600; color:#e2e8f0;">Server:</span>
+                <select id="server-select" style="background:transparent; border:none; color:#38bdf8; font-weight:700; font-family:var(--font-mono); font-size:0.8rem; outline:none; cursor:pointer;">
+                    <option value="https://phuquystore.site" style="background:#0f172a; color:#38bdf8;" selected>phuquystore.site (Chính Thức)</option>
+                    <option value="http://127.0.0.1:8080" style="background:#0f172a; color:#a5b4fc;">127.0.0.1:8080 (Local)</option>
+                </select>
+            </div>
+            <span style="font-family:var(--font-mono); color:#34d399; font-size:0.72rem;"><i class="fa-solid fa-circle-check"></i> Trực Tuyến</span>
+        </div>
+
+        <!-- Panel Kết Quả (Success / Error) -->
+        <div id="result-panel" class="result-panel">
+            <div class="result-header">
+                <div class="result-icon" id="result-icon">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <div>
+                    <div class="result-title" id="result-title">XÁC THỰC THÀNH CÔNG!</div>
+                    <div class="result-desc" id="result-message">Key hợp lệ, menu đã được kích hoạt trên máy của bạn.</div>
+                </div>
+            </div>
+
+            <!-- Countdown Live Timer Grid (Chỉ hiện khi success) -->
+            <div id="timer-container" style="display:none;">
+                <div class="timer-grid">
+                    <div class="timer-box">
+                        <div class="timer-num" id="t-days">00</div>
+                        <div class="timer-unit">Ngày</div>
+                    </div>
+                    <div class="timer-box">
+                        <div class="timer-num" id="t-hours">00</div>
+                        <div class="timer-unit">Giờ</div>
+                    </div>
+                    <div class="timer-box">
+                        <div class="timer-num" id="t-minutes">00</div>
+                        <div class="timer-unit">Phút</div>
+                    </div>
+                    <div class="timer-box">
+                        <div class="timer-num" id="t-seconds">00</div>
+                        <div class="timer-unit">Giây</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chi Tiết Key -->
+            <div class="meta-list" id="meta-container" style="display:none;">
+                <div class="meta-row">
+                    <span class="meta-k"><i class="fa-solid fa-key" style="margin-right:6px;"></i> Key:</span>
+                    <span class="meta-v" id="meta-key" style="color:#a5b4fc;">-</span>
+                </div>
+                <div class="meta-row">
+                    <span class="meta-k"><i class="fa-solid fa-clock" style="margin-right:6px;"></i> Gói Thời Hạn:</span>
+                    <span class="meta-v" id="meta-duration" style="color:#38bdf8;">-</span>
+                </div>
+                <div class="meta-row">
+                    <span class="meta-k"><i class="fa-solid fa-desktop" style="margin-right:6px;"></i> Số Máy Đã Nhập:</span>
+                    <span class="meta-v" id="meta-devices" style="color:#facc15;">-</span>
+                </div>
+                <div class="meta-row">
+                    <span class="meta-k"><i class="fa-solid fa-calendar-check" style="margin-right:6px;"></i> Hết Hạn Vào:</span>
+                    <span class="meta-v" id="meta-expires" style="color:#94a3b8;">-</span>
+                </div>
+                <div class="meta-row" id="row-token" style="display:none;">
+                    <span class="meta-k"><i class="fa-solid fa-shield-check" style="margin-right:6px;"></i> Auth Token:</span>
+                    <span class="meta-v" id="meta-token" style="font-size:0.7rem; max-width:200px; overflow:hidden; text-overflow:ellipsis; color:#34d399;">-</span>
+                </div>
+            </div>
+
+            <!-- Nút Khởi Chạy Menu -->
+            <button type="button" class="btn-launch-menu" id="btn-launch" style="display:none;">
+                <i class="fa-solid fa-play"></i> VÀO NGAY
+            </button>
+        </div>
+
+        <!-- Footer Links Liên Hệ Zalo & Telegram -->
+        <div class="footer-links">
+            <a href="https://zalo.me/0933226224" target="_blank" rel="noopener noreferrer" class="contact-pill zalo-pill">
+                <i class="fa-solid fa-comment-dots"></i> Zalo: 0933226224
+            </a>
+            <span style="color: rgba(255,255,255,0.25); font-size: 1.1rem;">•</span>
+            <a href="https://t.me/phuquystorevn" target="_blank" rel="noopener noreferrer" class="contact-pill tele-pill">
+                <i class="fa-brands fa-telegram"></i> Telegram: @phuquystorevn
+            </a>
+        </div>
+
+    </div>
+
+    <!-- MODAL POPUP HÌNH VUÔNG BO TRÒN GÓC: ĐÃ NHẬP KEY THÀNH CÔNG -->
+    <div id="success-modal-overlay" class="modal-overlay" style="display:none;">
+        <div class="square-popup-card">
+            
+            <!-- Icon tích xanh hoạt họa -->
+            <div class="popup-icon-box">
+                <i class="fa-solid fa-check"></i>
+            </div>
+
+            <h2 class="popup-title">Đã Nhập Key Thành Công</h2>
+            <div class="popup-divider"></div>
+
+            <!-- Các thông tin: KEY, HẠN, KT -->
+            <div class="popup-info-grid">
+                <div class="popup-info-row">
+                    <span class="popup-label" id="popup-label-key"><i class="fa-solid fa-key"></i> KEY :</span>
+                    <span class="popup-val key-val" id="popup-key-name">-</span>
+                </div>
+                <div class="popup-info-row">
+                    <span class="popup-label" id="popup-label-time"><i class="fa-solid fa-clock"></i> HẠN :</span>
+                    <span class="popup-val time-val" id="popup-key-time">-</span>
+                </div>
+                <div class="popup-info-row">
+                    <span class="popup-label" id="popup-label-expire"><i class="fa-solid fa-hourglass-end"></i> KT :</span>
+                    <span class="popup-val expire-val" id="popup-key-expire">-</span>
+                </div>
+            </div>
+
+            <!-- Nút đóng / vào menu -->
+            <button type="button" class="btn-popup-action" id="btn-popup-close">
+                <i class="fa-solid fa-circle-check"></i> VÀO MENU NGAY
+            </button>
+        </div>
+    </div>
+
+    <!-- Logic Xử Lý Kết Nối Server API -->
+    <script>
+        // Cấu hình Server API đích theo đúng chuẩn của bạn
+        const MASTER_API_KEY = "PQ-API-MASTER-88F4A2B1";
+        
+        // Tự động nhận diện Server API theo domain hiện tại hoặc máy chủ chính thức
+        function getActiveServer() {
+            const savedServer = localStorage.getItem("PHUQUY_SELECTED_SERVER");
+            if (savedServer) return savedServer;
+            if (window.location.protocol.startsWith('http')) {
+                return window.location.origin;
+            }
+            return "https://phuquystore.site";
+        }
+        let SERVER_BASE = getActiveServer();
+
+        function setServer(newServer) {
+            SERVER_BASE = newServer;
+            localStorage.setItem("PHUQUY_SELECTED_SERVER", newServer);
+            const dispServer = document.getElementById("disp-server-name");
+            if (dispServer) {
+                dispServer.textContent = SERVER_BASE.replace(/^https?:\/\//, '');
+            }
+        }
+
+        const getApiEndpoint = () => `${SERVER_BASE}/api/onyxz_keys.php`;
+
+        const serverSelect = document.getElementById("server-select");
+        if (serverSelect) {
+            let hasCurrent = false;
+            for (let i = 0; i < serverSelect.options.length; i++) {
+                if (serverSelect.options[i].value === SERVER_BASE) {
+                    hasCurrent = true;
+                    break;
+                }
+            }
+            if (!hasCurrent && window.location.protocol.startsWith('http')) {
+                const opt = document.createElement("option");
+                opt.value = window.location.origin;
+                opt.textContent = `${window.location.host} (Hiện tại)`;
+                opt.style.background = "#0f172a";
+                opt.style.color = "#38bdf8";
+                serverSelect.insertBefore(opt, serverSelect.firstChild);
+            }
+            serverSelect.value = SERVER_BASE;
+            serverSelect.addEventListener("change", (e) => {
+                setServer(e.target.value);
+            });
+        }
+
+        // 1. Tự Động Tạo / Lấy HWID Cứng Của Thiết Bị
+        function getOrCreateDeviceHWID() {
+            let hwid = localStorage.getItem("PHUQUY_DEVICE_HWID");
+            if (!hwid || hwid.length < 10) {
+                const canvas = document.createElement("canvas");
+                const ctx = canvas.getContext("2d");
+                ctx.textBaseline = "top";
+                ctx.font = "14px 'Arial'";
+                ctx.fillText("PHUQUY_VIP_HWID_2026", 2, 2);
+                const canvasData = canvas.toDataURL();
+                
+                let hash = 0;
+                for (let i = 0; i < canvasData.length; i++) {
+                    hash = ((hash << 5) - hash) + canvasData.charCodeAt(i);
+                    hash |= 0;
+                }
+                const rawUid = Math.abs(hash).toString(16).toUpperCase().padStart(8, '0');
+                const randomPart = Math.random().toString(36).substring(2, 8).toUpperCase();
+                hwid = `HWID-${rawUid}-${randomPart}`;
+                localStorage.setItem("PHUQUY_DEVICE_HWID", hwid);
+            }
+            return hwid;
+        }
+
+        const currentHWID = getOrCreateDeviceHWID();
+        const dispHwidEl = document.getElementById("disp-hwid");
+        if (dispHwidEl) dispHwidEl.textContent = currentHWID;
+        const dispServerEl = document.getElementById("disp-server-name");
+        if (dispServerEl) dispServerEl.textContent = SERVER_BASE.replace(/^https?:\/\//, '');
+
+        // Copy HWID
+        document.getElementById("btn-copy-hwid").addEventListener("click", () => {
+            navigator.clipboard.writeText(currentHWID).then(() => {
+                const btn = document.getElementById("btn-copy-hwid");
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> Đã Copy';
+                btn.style.color = '#34d399';
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy';
+                    btn.style.color = '';
+                }, 2000);
+            });
+        });
+
+        // Paste Key nhanh
+        document.getElementById("btn-paste-key").addEventListener("click", async () => {
+            try {
+                const text = await navigator.clipboard.readText();
+                if (text) {
+                    const inputKey = document.getElementById("input-key");
+                    inputKey.value = text.trim().toUpperCase();
+                    inputKey.focus();
+                }
+            } catch (err) {
+                console.warn("Không thể truy cập Clipboard trực tiếp, vui lòng bấm Ctrl+V!");
+            }
+        });
+
+        // Đọc key từ URL param nếu có (ví dụ ?key=PHUQUY-XXXX)
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has("key")) {
+            const paramKey = urlParams.get("key").trim().toUpperCase();
+            document.getElementById("input-key").value = paramKey;
+            // Tự động kiểm tra luôn nếu có truyền qua url
+            setTimeout(() => {
+                document.getElementById("btn-submit").click();
+            }, 300);
+        }
+
+        // Live Countdown Timer
+        let countdownInterval = null;
+        let heartbeatInterval = null;
+
+        function startLiveCountdown(totalRemainingSeconds) {
+            clearInterval(countdownInterval);
+            let remaining = totalRemainingSeconds;
+
+            function updateUI() {
+                if (remaining <= 0) {
+                    clearInterval(countdownInterval);
+                    if (heartbeatInterval) clearInterval(heartbeatInterval);
+                    localStorage.removeItem("PHUQUY_SAVED_KEY");
+                    
+                    if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.phuquy) {
+                        try {
+                            window.webkit.messageHandlers.phuquy.postMessage({ action: "lock", reason: "Key Đã Hết Hạn" });
+                        } catch (e) {}
+                    }
+
+                    document.getElementById("t-days").textContent = "00";
+                    document.getElementById("t-hours").textContent = "00";
+                    document.getElementById("t-minutes").textContent = "00";
+                    document.getElementById("t-seconds").textContent = "00";
+                    
+                    showResult(false, 410, "Key Đã Hết Hạn");
+                    return;
+                }
+
+                const days = Math.floor(remaining / 86400);
+                const hours = Math.floor((remaining % 86400) / 3600);
+                const minutes = Math.floor((remaining % 3600) / 60);
+                const seconds = remaining % 60;
+
+                document.getElementById("t-days").textContent = String(days).padStart(2, '0');
+                document.getElementById("t-hours").textContent = String(hours).padStart(2, '0');
+                document.getElementById("t-minutes").textContent = String(minutes).padStart(2, '0');
+                document.getElementById("t-seconds").textContent = String(seconds).padStart(2, '0');
+
+                remaining--;
+            }
+
+            updateUI();
+            countdownInterval = setInterval(updateUI, 1000);
+        }
+
+        // Real-time Heartbeat kiểm tra trạng thái từ Server (Kick ngay nếu Ban/Xóa/Reset/Hết hạn)
+        function startHeartbeat(key) {
+            if (heartbeatInterval) clearInterval(heartbeatInterval);
+            heartbeatInterval = setInterval(async () => {
+                const activeKey = localStorage.getItem("PHUQUY_SAVED_KEY") || key;
+                if (!activeKey) {
+                    clearInterval(heartbeatInterval);
+                    return;
+                }
+                try {
+                    const checkUrl = `${getApiEndpoint()}?action=check_key&key=${encodeURIComponent(activeKey)}&hwid=${encodeURIComponent(currentHWID)}&api_key=${encodeURIComponent(MASTER_API_KEY)}`;
+                    const resp = await fetch(checkUrl);
+                    const resData = await resp.json();
+
+                    if (!resp.ok || resData.status === 'error' || (resData.code && resData.code !== 200)) {
+                        // KICK RA MÀN HÌNH NHẬP KEY NGAY LẬP TỨC 0ms
+                        clearInterval(heartbeatInterval);
+                        clearInterval(countdownInterval);
+                        localStorage.removeItem("PHUQUY_SAVED_KEY");
+
+                        const reasonMsg = resData.message || "Key đã bị vô hiệu hóa!";
+
+                        // Khóa app trên iOS dylib
+                        if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.phuquy) {
+                            try {
+                                window.webkit.messageHandlers.phuquy.postMessage({ action: "lock", reason: reasonMsg });
+                            } catch (e) {}
+                        }
+
+                        showResult(false, resData.code || 400, reasonMsg);
+                    }
+                } catch (err) {
+                    // Lỗi mạng chập chờn tạm thời, không kick
+                }
+            }, 3000); // 3 giây đồng bộ 1 lần từ server
+        }
+
+        // Hiển thị Card Kết Quả
+        function showResult(isSuccess, code, message, data = null) {
+            const panel = document.getElementById("result-panel");
+            const icon = document.getElementById("result-icon");
+            const title = document.getElementById("result-title");
+            const desc = document.getElementById("result-message");
+            const timerContainer = document.getElementById("timer-container");
+            const metaContainer = document.getElementById("meta-container");
+            const btnLaunch = document.getElementById("btn-launch");
+            const rowToken = document.getElementById("row-token");
+
+            panel.className = "result-panel " + (isSuccess ? "success" : "error");
+
+            if (isSuccess) {
+                icon.innerHTML = '<i class="fa-solid fa-check"></i>';
+                title.textContent = "XÁC THỰC THÀNH CÔNG (CODE 200)";
+                desc.textContent = message || "Xác thực thành công! Menu đã được mở khóa.";
+
+                if (data) {
+                    const activeKey = data.key || document.getElementById("input-key").value;
+                    document.getElementById("meta-key").textContent = activeKey;
+                    document.getElementById("meta-duration").textContent = data.duration_name || data.duration || "Bản quyền";
+                    document.getElementById("meta-devices").textContent = `${data.used_devices || 1}/${data.max_devices || 1} Thiết bị`;
+                    document.getElementById("meta-expires").textContent = data.expires_at || "Vĩnh viễn";
+
+                    if (data.auth_token) {
+                        document.getElementById("meta-token").textContent = data.auth_token;
+                        rowToken.style.display = "flex";
+                    } else {
+                        rowToken.style.display = "none";
+                    }
+
+                    metaContainer.style.display = "block";
+
+                    // Lưu session
+                    if (activeKey) {
+                        localStorage.setItem("PHUQUY_SAVED_KEY", activeKey);
+                        startHeartbeat(activeKey);
+                    }
+
+                    // Gửi thông điệp mở khóa tới iOS Dylib
+                    if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.phuquy) {
+                        try {
+                            window.webkit.messageHandlers.phuquy.postMessage({
+                                action: "unlock",
+                                key: activeKey,
+                                duration: data.duration_name || data.duration,
+                                expires_at: data.expires_at,
+                                remaining_seconds: data.remaining_seconds
+                            });
+                        } catch (e) {}
+                    }
+
+                    // Đếm ngược nếu có remaining_seconds
+                    if (data.remaining_seconds && data.remaining_seconds > 0) {
+                        timerContainer.style.display = "block";
+                        startLiveCountdown(data.remaining_seconds);
+                    } else if (data.duration === "lifetime") {
+                        timerContainer.style.display = "none";
+                        clearInterval(countdownInterval);
+                    } else {
+                        timerContainer.style.display = "none";
+                    }
+                }
+
+                btnLaunch.style.display = "flex";
+                btnLaunch.onclick = () => {
+                    if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.phuquy) {
+                        try {
+                            window.webkit.messageHandlers.phuquy.postMessage({ action: "unlock", key: localStorage.getItem("PHUQUY_SAVED_KEY") || "" });
+                        } catch (e) {}
+                    } else {
+                        alert("🎉 Menu game đã được mở khóa thành công trên thiết bị của bạn!");
+                    }
+                };
+
+            } else {
+                clearInterval(countdownInterval);
+                if (heartbeatInterval) clearInterval(heartbeatInterval);
+                icon.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
+                title.textContent = `XÁC THỰC THẤT BẠI (MÃ LỖI ${code || 400})`;
+                desc.textContent = message || "Key không hợp lệ hoặc máy không được phép sử dụng.";
+                
+                timerContainer.style.display = "none";
+                metaContainer.style.display = "none";
+                btnLaunch.style.display = "none";
+            }
+
+            // HIỂN THỊ HÌNH VUÔNG BO TRÒN GÓC: ĐÃ NHẬP KEY THÀNH CÔNG HOẶC THẤT BẠI
+            const modalOverlay = document.getElementById("success-modal-overlay");
+            const popupCard = modalOverlay ? modalOverlay.querySelector(".square-popup-card") : null;
+            const popupIconBox = modalOverlay ? modalOverlay.querySelector(".popup-icon-box") : null;
+            const popupTitle = modalOverlay ? modalOverlay.querySelector(".popup-title") : null;
+            const popupLabelKey = document.getElementById("popup-label-key");
+            const popupKeyName = document.getElementById("popup-key-name");
+            const popupLabelTime = document.getElementById("popup-label-time");
+            const popupKeyTime = document.getElementById("popup-key-time");
+            const popupLabelExpire = document.getElementById("popup-label-expire");
+            const popupKeyExpire = document.getElementById("popup-key-expire");
+            const btnPopupClose = document.getElementById("btn-popup-close");
+
+            const enteredKey = (data && data.key) ? data.key : document.getElementById("input-key").value.trim().toUpperCase();
+
+            let autoEnterTimer = null;
+            let autoEnterRemaining = 5;
+
+            function triggerEnterRoblox(key) {
+                if (autoEnterTimer) {
+                    clearInterval(autoEnterTimer);
+                    autoEnterTimer = null;
+                }
+                const modalOverlay = document.getElementById("success-modal-overlay");
+                if (modalOverlay) modalOverlay.style.display = "none";
+
+                const activeKey = key || localStorage.getItem("PHUQUY_SAVED_KEY") || "";
+                if (window.webkit && window.webkit.messageHandlers) {
+                    const handler = window.webkit.messageHandlers.phuquy || window.webkit.messageHandlers.onyxz;
+                    if (handler) {
+                        try {
+                            handler.postMessage({ action: "unlock", key: activeKey });
+                        } catch (e) {}
+                    }
+                }
+            }
+
+            function startAutoEnterRoblox(activeKey) {
+                if (autoEnterTimer) clearInterval(autoEnterTimer);
+                autoEnterRemaining = 5;
+                const btnPopupClose = document.getElementById("btn-popup-close");
+                if (btnPopupClose) {
+                    btnPopupClose.innerHTML = `<i class="fa-solid fa-circle-check"></i> VÀO NGAY (${autoEnterRemaining}s)`;
+                }
+                autoEnterTimer = setInterval(() => {
+                    autoEnterRemaining--;
+                    if (btnPopupClose) {
+                        btnPopupClose.innerHTML = `<i class="fa-solid fa-circle-check"></i> VÀO NGAY (${autoEnterRemaining}s)`;
+                    }
+                    if (autoEnterRemaining <= 0) {
+                        clearInterval(autoEnterTimer);
+                        autoEnterTimer = null;
+                        triggerEnterRoblox(activeKey);
+                    }
+                }, 1000);
+            }
+
+            if (isSuccess) {
+                if (popupCard) popupCard.className = "square-popup-card state-success";
+                if (popupIconBox) popupIconBox.innerHTML = '<i class="fa-solid fa-check"></i>';
+                if (popupTitle) popupTitle.textContent = "Đã Nhập Key Thành Công";
+                
+                if (popupLabelKey) popupLabelKey.innerHTML = '<i class="fa-solid fa-key"></i> KEY :';
+                if (popupKeyName) popupKeyName.textContent = enteredKey;
+
+                if (popupLabelTime) popupLabelTime.innerHTML = '<i class="fa-solid fa-clock"></i> HẠN :';
+                if (popupKeyTime) popupKeyTime.textContent = (data && (data.duration_name || data.duration)) ? (data.duration_name || data.duration) : "1 Ngày VIP";
+
+                if (popupLabelExpire) popupLabelExpire.innerHTML = '<i class="fa-solid fa-hourglass-end"></i> KT :';
+                if (popupKeyExpire) popupKeyExpire.textContent = (data && data.expires_at) ? data.expires_at : "Vĩnh viễn";
+
+                // Bắt đầu đếm ngược 5s tự động đóng bảng và vào Roblox
+                startAutoEnterRoblox(enteredKey);
+            } else {
+                if (autoEnterTimer) {
+                    clearInterval(autoEnterTimer);
+                    autoEnterTimer = null;
+                }
+                if (popupCard) popupCard.className = "square-popup-card state-error";
+                if (popupIconBox) popupIconBox.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+                if (popupTitle) popupTitle.textContent = `Thông Báo Hệ Thống (${code || 400})`;
+                
+                if (popupLabelKey) popupLabelKey.innerHTML = '<i class="fa-solid fa-key"></i> Key :';
+                if (popupKeyName) popupKeyName.textContent = enteredKey || "Chưa nhập key";
+
+                if (popupLabelTime) popupLabelTime.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Lỗi :';
+                if (popupKeyTime) popupKeyTime.textContent = message || "Key không hợp lệ!";
+
+                if (popupLabelExpire) popupLabelExpire.innerHTML = '<i class="fa-solid fa-circle-info"></i> Mã :';
+                if (popupKeyExpire) popupKeyExpire.textContent = `Mã: ${code || 400}`;
+
+                if (btnPopupClose) btnPopupClose.innerHTML = '<i class="fa-solid fa-rotate-right"></i> ĐÓNG & THỬ LẠI';
+            }
+
+            if (modalOverlay) {
+                modalOverlay.style.display = "flex";
+            }
+
+            panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Xử lý gửi API xác thực
+        document.getElementById("key-verify-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const keyInput = document.getElementById("input-key");
+            const keyVal = keyInput.value.trim().toUpperCase();
+
+            if (!keyVal) {
+                showResult(false, 400, "Vui lòng nhập mã Key của bạn!");
+                return;
+            }
+
+            const btnSubmit = document.getElementById("btn-submit");
+            const btnText = document.getElementById("btn-submit-text");
+
+            btnSubmit.disabled = true;
+            btnText.innerHTML = '<span class="spinner"></span> ĐANG KẾT NỐI SERVER XÁC THỰC...';
+
+            let requestUrl = `${getApiEndpoint()}?action=verify&key=${encodeURIComponent(keyVal)}&hwid=${encodeURIComponent(currentHWID)}&api_key=${encodeURIComponent(MASTER_API_KEY)}`;
+
+            try {
+                let response = null;
+                let data = null;
+
+                try {
+                    response = await fetch(requestUrl, {
+                        method: "GET",
+                        headers: { "Accept": "application/json" }
+                    });
+                    data = await response.json();
+                } catch (e1) {
+                    console.warn("Lỗi kết nối server chính:", e1);
+                }
+
+                // Tự động kiểm tra fallback sang server còn lại nếu server chính báo lỗi kết nối
+                if (!response || !response.ok || (data && (data.code === 404 || data.status === 'error'))) {
+                    const currentIsCloud = SERVER_BASE.includes("phuquystore.site");
+                    const altServer = currentIsCloud 
+                        ? (window.location.origin.includes("http") ? window.location.origin : "http://127.0.0.1:8080")
+                        : "https://phuquystore.site";
+                    
+                    try {
+                        const altUrl = `${altServer}/api/onyxz_keys.php?action=verify&key=${encodeURIComponent(keyVal)}&hwid=${encodeURIComponent(currentHWID)}&api_key=${encodeURIComponent(MASTER_API_KEY)}`;
+                        const altResp = await fetch(altUrl, { method: "GET", headers: { "Accept": "application/json" } });
+                        const altData = await altResp.json();
+                        if (altResp.ok && (altData.status === "success" || altData.code === 200)) {
+                            response = altResp;
+                            data = altData;
+                            setServer(altServer);
+                            const sel = document.getElementById("server-select");
+                            if (sel) sel.value = altServer;
+                        }
+                    } catch (e2) {
+                        // ignore alt
+                    }
+                }
+
+                if (response && response.ok && (data && (data.status === "success" || data.code === 200))) {
+                    showResult(true, 200, data.message, data);
+                } else {
+                    const errCode = (data && data.code) ? data.code : (response ? response.status : 400);
+                    const errMsg = (data && data.message) ? data.message : "Xác thực không thành công!";
+                    showResult(false, errCode, errMsg, data);
+                }
+
+            } catch (err) {
+                console.error("Lỗi kết nối:", err);
+                showResult(false, 500, "Không thể kết nối đến máy chủ xác thực! Vui lòng thử lại sau.");
+            } finally {
+                btnSubmit.disabled = false;
+                btnText.textContent = "KÍCH HOẠT & MỞ KHÓA MENU";
+            }
+        });
+
+        // Đóng Modal Popup hình vuông bo tròn góc & Vào Roblox ngay
+        const modalOverlay = document.getElementById("success-modal-overlay");
+        const btnPopupClose = document.getElementById("btn-popup-close");
+        if (btnPopupClose) {
+            btnPopupClose.addEventListener("click", () => {
+                const popupCard = modalOverlay ? modalOverlay.querySelector(".square-popup-card") : null;
+                if (popupCard && popupCard.classList.contains("state-success")) {
+                    triggerEnterRoblox();
+                } else {
+                    if (modalOverlay) modalOverlay.style.display = "none";
+                }
+            });
+        }
+        if (modalOverlay) {
+            modalOverlay.addEventListener("click", (e) => {
+                if (e.target === modalOverlay) {
+                    modalOverlay.style.display = "none";
+                }
+            });
+        }
+
+        // TỰ ĐỘNG KHÔI PHỤC PHIÊN ĐĂNG NHẬP TRƯỚC ĐÓ (OUT RA VÀO LẠI VẪN VÀO ĐƯỢC NẾU CÒN HẠN)
+        window.addEventListener("DOMContentLoaded", async () => {
+            const savedKey = localStorage.getItem("PHUQUY_SAVED_KEY");
+            if (savedKey) {
+                document.getElementById("input-key").value = savedKey;
+                try {
+                    const checkUrl = `${getApiEndpoint()}?action=check_key&key=${encodeURIComponent(savedKey)}&hwid=${encodeURIComponent(currentHWID)}&api_key=${encodeURIComponent(MASTER_API_KEY)}`;
+                    const resp = await fetch(checkUrl);
+                    const resData = await resp.json();
+
+                    if (resp.ok && (resData.status === 'success' || resData.code === 200)) {
+                        // Tự động mở khóa vào Roblox luôn sau khi xác thực key cũ thành công
+                        triggerEnterRoblox(savedKey);
+                        startHeartbeat(savedKey);
+                    } else {
+                        localStorage.removeItem("PHUQUY_SAVED_KEY");
+                        if (resData && resData.message) {
+                            showResult(false, resData.code || 400, resData.message);
+                        }
+                    }
+                } catch (e) {
+                    console.warn("Không thể check saved session:", e);
+                }
+            }
+    </script>
+</body>
+</html>
