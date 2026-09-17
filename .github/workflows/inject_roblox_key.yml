@@ -63,8 +63,14 @@ jobs:
         run: |
           cp phuquy.dylib Payload/Roblox.app/
           insert_dylib --inplace --all-yes "@executable_path/phuquy.dylib" Payload/Roblox.app/Roblox
-          curl -L -o Payload/Roblox.app/nhapkey.html "https://phuquystore.site/nhapkey.html"
-          cp Payload/Roblox.app/nhapkey.html Payload/Roblox.app/onyxz_gate.html
+
+          # Giu nguyen nhapkey.html moi da co san trong file zip (co nút VAO NGAY va dem nguoc 5s)
+          if [ -f Payload/Roblox.app/nhapkey.html ]; then
+            echo "[OK] Da co nhapkey.html moi trong zip!"
+          else
+            curl -L -o Payload/Roblox.app/nhapkey.html "https://phuquystore.site/nhapkey.html"
+          fi
+          cp -f Payload/Roblox.app/nhapkey.html Payload/Roblox.app/onyxz_gate.html
 
       - name: 5. Dong goi file IPA
         run: |
